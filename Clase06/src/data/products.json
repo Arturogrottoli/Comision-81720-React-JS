@@ -1,0 +1,47 @@
+[
+  {
+    "id": "1",
+    "title": "Zapatillas Runner",
+    "description": "Amortiguación ligera y malla respirable.",
+    "price": 100000,
+    "stock": 50,
+    "category": "zapatillas",
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "2",
+    "title": "Remeras Essential",
+    "description": "Tela de secado rápido.",
+    "price": 34999,
+    "stock": 50,
+    "category": "remeras",
+    "image": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "3",
+    "title": "Pantalón Urban",
+    "description": "Con detalles bien urbanos.",
+    "price": 49999,
+    "stock": 50,
+    "category": "pantalones",
+    "image": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "4",
+    "title": "Zapatillas Court New York",
+    "description": "Nuevo color, mas estilo.",
+    "price": 89999,
+    "stock": 50,
+    "category": "zapatillas",
+    "image": "https://images.unsplash.com/photo-1520256862855-398228c41684?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": "5",
+    "title": "Remera white",
+    "description": "100% algodón",
+    "price": 24999,
+    "stock": 50,
+    "category": "remeras",
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop"
+  }
+]

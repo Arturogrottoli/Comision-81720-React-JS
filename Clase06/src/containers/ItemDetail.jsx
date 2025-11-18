@@ -2,16 +2,17 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { money } from '../utils/currency.js'
 import ItemCount from './ItemCount.jsx'
-// Sin contexto de carrito: mostramos detalle y permitimos simular agregado local
 
-export default function ItemDetail({ product }){
+export default function ItemDetail({ product, items, addItem }){
   const [added, setAdded] = useState(0);
 
   const onAdd = (qty) => {
     setAdded(qty);
+    addItem(product, qty);
   }
 
-  const availableStock = product.stock;
+  const inCartQty = items.find(i => i.id === product.id)?.qty || 0;
+  const availableStock = Math.max(0, product.stock - inCartQty);
 
   return (
     <article className="card" style={{maxWidth:820, margin:'12px auto'}}>

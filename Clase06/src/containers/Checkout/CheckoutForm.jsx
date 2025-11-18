@@ -1,12 +1,7 @@
 import { useState } from 'react'
 import { money } from '../../utils/currency.js'
-import { createOrder } from '../../services/dataService.js'
 
-export default function CheckoutForm(){
-  // Sin contexto de carrito: mostramos estado vacío
-  const items = [];
-  const totalPrice = 0;
-  const clear = () => {};
+export default function CheckoutForm({ items, totalPrice, clear }){
   const [buyer, setBuyer] = useState({ name:'', email:'', phone:'' });
   const [loading, setLoading] = useState(false);
   const [orderId, setOrderId] = useState(null);
@@ -14,20 +9,32 @@ export default function CheckoutForm(){
 
   const handleChange = (e) => setBuyer({ ...buyer, [e.target.name]: e.target.value });
 
-  const submit = async (e) => {
+  const submit = (e) => {
     e.preventDefault();
     if (items.length === 0) return;
     try {
       setLoading(true);
       setError(null);
 
-      const orderPayload = {
-        buyer,
-        items: items.map(i => ({ id: i.id, title: i.title, price: i.price, qty: i.qty })),
-        total: totalPrice
-      };
-      const ref = await createOrder(orderPayload);
-      setOrderId(ref.id);
+      const orderId = crypto.randomUUID
+        ? crypto.randomUUID()
+        : Math.random().toString(36).slice(2);
+
+      try {
+        const raw = localStorage.getItem("mishop_orders");
+        const orders = raw ? JSON.parse(raw) : [];
+        orders.push({
+          id: orderId,
+          buyer,
+          items: items.map(i => ({ id: i.id, title: i.title, price: i.price, qty: i.qty })),
+          total: totalPrice,
+          createdAt: new Date().toISOString(),
+          status: "generated",
+        });
+        localStorage.setItem("mishop_orders", JSON.stringify(orders));
+      } catch {}
+
+      setOrderId(orderId);
       clear();
     } catch (err){
       console.error(err);

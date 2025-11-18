@@ -3,10 +3,7 @@ import CartItem from './CartItem.jsx'
 import EmptyState from '../../components/EmptyState.jsx'
 import { money } from '../../utils/currency.js'
 
-export default function Cart(){
-  // Sin contexto de carrito: dejamos la vista de carrito vacía
-  const items = [];
-
+export default function Cart({ items, removeItem, clear, totalPrice }){
   if (items.length === 0) {
     return <EmptyState title="Carrito vacío" subtitle="Agregá productos al carrito" />
   }

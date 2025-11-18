@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import Loader from '../components/Loader.jsx'
 import EmptyState from '../components/EmptyState.jsx'
 import ItemList from './ItemList.jsx'
-import { getProducts } from '../services/dataService.js'
+import productsRaw from '../data/products.json'
 
 export default function ItemListContainer({ greeting }){
   const { cid } = useParams();
@@ -11,17 +11,10 @@ export default function ItemListContainer({ greeting }){
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    (async () => {
-      try {
-        setLoading(true);
-        const list = await getProducts(cid);
-        setProducts(list || []);
-      } catch (e){
-        console.error(e);
-      } finally {
-        setLoading(false);
-      }
-    })();
+    setLoading(true);
+    const list = cid ? productsRaw.filter(p => p.category === cid) : productsRaw;
+    setProducts(list || []);
+    setLoading(false);
   }, [cid]);
 
   if (loading) return <Loader/>;

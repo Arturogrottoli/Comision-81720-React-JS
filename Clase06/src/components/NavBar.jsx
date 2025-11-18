@@ -3,7 +3,7 @@ import CartWidget from './CartWidget.jsx'
 
 const active = ({ isActive }) => ({ color: isActive ? 'var(--accent)' : undefined })
 
-export default function NavBar(){
+export default function NavBar({ totalQty }){
   return (
     <nav className="nav">
       <Link to="/" className="logo">CoderShop</Link>
@@ -11,7 +11,7 @@ export default function NavBar(){
       <NavLink to="/category/remeras" style={active}>Remeras</NavLink>
       <NavLink to="/category/pantalones" style={active}>Pantalones</NavLink>
       <div style={{marginLeft:'auto'}}>
-        <CartWidget />
+        <CartWidget totalQty={totalQty} />
       </div>
     </nav>
   )
